@@ -1,0 +1,34 @@
+(()=>{var e={};e.id=5935,e.ids=[5935],e.modules={3295:e=>{"use strict";e.exports=require("next/dist/server/app-render/after-task-async-storage.external.js")},10846:e=>{"use strict";e.exports=require("next/dist/compiled/next-server/app-page.runtime.prod.js")},11997:e=>{"use strict";e.exports=require("punycode")},25911:(e,t,r)=>{"use strict";r.r(t),r.d(t,{patchFetch:()=>f,routeModule:()=>p,serverHooks:()=>g,workAsyncStorage:()=>m,workUnitAsyncStorage:()=>d});var i={};r.r(i),r.d(i,{GET:()=>l});var n=r(96559),s=r(48088),o=r(37719),a=r(32190),u=r(56621);function c(e){return e.toLowerCase().replace(/[^a-z0-9\s-]/g,"").replace(/\s+/g,"-").replace(/-+/g,"-").trim()}async function l(e,{params:t}){try{let{slug:e}=await t;if(!e)return a.NextResponse.json({error:"Slug is required"},{status:400});let r=(0,u.z)();console.log("\uD83D\uDD0D Looking for ministry with slug:",e);let{data:i,error:n}=await r.from("get_involved_templates").select(`
+        id,
+        title,
+        description,
+        excerpt,
+        featured_image,
+        icon_emoji,
+        gradient_colors,
+        category,
+        requirements,
+        benefits,
+        time_commitment,
+        contact_person,
+        contact_email,
+        contact_phone,
+        custom_cta_text,
+        custom_cta_url,
+        priority_order,
+        ministry_group_id,
+        ministry_group:groups!ministry_group_id(
+          id,
+          name,
+          type,
+          image_url
+        )
+      `).eq("status","published");if(!n&&i){let t=i.find(t=>c(t.title)===e);if(t)return console.log("✅ Found get_involved_template:",t.title),a.NextResponse.json({ministry:{...t,featured_image:t.featured_image||t.ministry_group?.image_url||null},source:"get_involved_templates"})}console.log("\uD83D\uDD04 Not found in get_involved_templates, trying groups table...");let{data:s,error:o}=await r.from("groups").select(`
+        id,
+        name,
+        description,
+        type,
+        status,
+        image_url,
+        created_at
+      `).eq("status","active");if(!o&&s){let t=s.find(t=>c(t.name)===e);if(t){console.log("✅ Found group:",t.name);let e={id:t.id,title:t.name,description:t.description||`Connect with our ${t.name} and make a difference in our community.`,excerpt:t.description||`Join our ${t.name} and make a difference in our community.`,featured_image:t.image_url||null,icon_emoji:function(e,t){let r=e.toLowerCase();return r.includes("prayer")?"\uD83D\uDE4F":r.includes("worship")?"\uD83C\uDFB5":r.includes("youth")?"\uD83C\uDFC0":r.includes("children")?"\uD83D\uDC76":r.includes("outreach")||r.includes("community")?"\uD83E\uDD1D":r.includes("marriage")||r.includes("counselling")?"\uD83D\uDC92":"ministry"===t?"✨":"\uD83E\uDD1D"}(t.name,t.type),gradient_colors:function(e){let t=e.toLowerCase();return t.includes("prayer")?{from:"purple-800",to:"indigo-900"}:t.includes("worship")?{from:"green-800",to:"teal-900"}:t.includes("youth")?{from:"orange-800",to:"red-900"}:t.includes("children")?{from:"blue-800",to:"indigo-900"}:t.includes("outreach")?{from:"emerald-800",to:"green-900"}:{from:"blue-800",to:"indigo-900"}}(t.name),category:"ministry"===t.type?"ministry":"community",time_commitment:"2-3 hours per week",contact_person:"Ministry Leader",contact_email:null,contact_phone:null,requirements:function(e){switch(e){case"ministry":return["Heart for serving others","Commitment to regular attendance","Willingness to learn and grow","Team player attitude"];case"small_group":return["Desire for community and fellowship","Openness to share and learn","Regular attendance commitment"];case"discipleship":return["Commitment to spiritual growth","Willingness to be mentored","Regular study and meeting attendance"];default:return["Heart for serving","Regular commitment","Team spirit"]}}(t.type),benefits:function(e){switch(e){case"ministry":return["Make a meaningful impact","Develop new skills and talents","Build lasting friendships","Grow in your faith journey"];case"small_group":return["Deep community connections","Spiritual growth and support","Lifelong friendships","Safe space to share and learn"];case"discipleship":return["Accelerated spiritual growth","Personal mentorship","Biblical knowledge and wisdom","Leadership development"];default:return["Personal growth","Community connection","Spiritual development"]}}(t.type),custom_cta_text:"Learn More",ministry_group:{id:t.id,name:t.name,type:t.type}};return a.NextResponse.json({ministry:e,source:"groups"})}}return console.log("❌ Ministry not found with slug:",e),a.NextResponse.json({error:"Ministry not found"},{status:404})}catch(e){return console.error("❌ Error fetching ministry:",e),a.NextResponse.json({error:"Internal server error"},{status:500})}}let p=new n.AppRouteRouteModule({definition:{kind:s.RouteKind.APP_ROUTE,page:"/api/ministries/[slug]/route",pathname:"/api/ministries/[slug]",filename:"route",bundlePath:"app/api/ministries/[slug]/route"},resolvedPagePath:"/Users/nanasasu/docm-web-standalone/src/app/api/ministries/[slug]/route.ts",nextConfigOutput:"",userland:i}),{workAsyncStorage:m,workUnitAsyncStorage:d,serverHooks:g}=p;function f(){return(0,o.patchFetch)({workAsyncStorage:m,workUnitAsyncStorage:d})}},27910:e=>{"use strict";e.exports=require("stream")},29294:e=>{"use strict";e.exports=require("next/dist/server/app-render/work-async-storage.external.js")},34631:e=>{"use strict";e.exports=require("tls")},39727:()=>{},44870:e=>{"use strict";e.exports=require("next/dist/compiled/next-server/app-route.runtime.prod.js")},47990:()=>{},51906:e=>{function t(e){var t=Error("Cannot find module '"+e+"'");throw t.code="MODULE_NOT_FOUND",t}t.keys=()=>[],t.resolve=t,t.id=51906,e.exports=t},55511:e=>{"use strict";e.exports=require("crypto")},55591:e=>{"use strict";e.exports=require("https")},56621:(e,t,r)=>{"use strict";r.d(t,{z:()=>n});var i=r(34386);let n=()=>{let e="https://ufjfafcfkalaasdhgcbi.supabase.co",t="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVmamZhZmNma2FsYWFzZGhnY2JpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc3MTQ3MTMsImV4cCI6MjA2MzI5MDcxM30.PzwQAeRUJDK8llZf0awLwgW6j-pAmZPOgz55USsOnyo";if(!e||!t)throw Error("Supabase environment variables not configured");return(0,i.createServerClient)(e,t,{cookies:{get:()=>null,set(){},remove(){}}})}},63033:e=>{"use strict";e.exports=require("next/dist/server/app-render/work-unit-async-storage.external.js")},74075:e=>{"use strict";e.exports=require("zlib")},78335:()=>{},79428:e=>{"use strict";e.exports=require("buffer")},79551:e=>{"use strict";e.exports=require("url")},81630:e=>{"use strict";e.exports=require("http")},91645:e=>{"use strict";e.exports=require("net")},94735:e=>{"use strict";e.exports=require("events")},96487:()=>{}};var t=require("../../../../webpack-runtime.js");t.C(e);var r=e=>t(t.s=e),i=t.X(0,[4447,9398,4386,580],()=>r(25911));module.exports=i})();
