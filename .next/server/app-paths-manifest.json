@@ -1,9 +1,0 @@
-{
-  "/api/events/route": "app/api/events/route.js",
-  "/api/footer/route": "app/api/footer/route.js",
-  "/api/homepage/route": "app/api/homepage/route.js",
-  "/api/navigation/route": "app/api/navigation/route.js",
-  "/api/sermons/route": "app/api/sermons/route.js",
-  "/api/tenant-settings/route": "app/api/tenant-settings/route.js",
-  "/page": "app/page.js"
-}
